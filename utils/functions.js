@@ -15,5 +15,38 @@ const formatNumber = (n, p, ts, dp) => {
     }
     // Insert separators and return result
     return t.join(ts);
-  }
-export {formatNumber};
+}
+const convertItemList = (item) => {
+    let newItem = {
+      id: item.id,
+      title: item.title,
+      price: {
+          currency: item.currency_id,
+          amount: item.price,
+          decimals: null,
+      },
+      picture: item.thumbnail,
+      condition: item.condition,
+      city: item.address.state_name,
+      free_shipping: item.shipping.free_shipping,
+  };
+  return newItem
+}
+const convertItem = (item, description) => {
+  let newItem =  {
+        id: item.id,
+        title: item.title,
+        price: {      
+          currency: item.currency_id,      
+          amount: item.price,      
+          decimals: null,    
+        },    
+        picture: item.secure_thumbnail,    
+        condition: item.condition,   
+        free_shipping: item.shipping.free_shipping || null,    
+        sold_quantity: item.sold_quantity,
+        description: description.plain_text, 
+      }
+    return newItem;
+}
+export {formatNumber, convertItemList, convertItem};
