@@ -1,3 +1,16 @@
+# Challenge Front-End MercadoLibre
+    *Desarrollo de proyecto frontend en React. 
+    *Integración con api en Express. 
+    *SSR con express
+
+##El proyecto requiere correr los siguientes comandos para iniciar:
+    *npm i
+    *npm run build
+    *npm run start:ssr
+
+start:ssr correrá con server side rendering la version buildeada del front-end
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
