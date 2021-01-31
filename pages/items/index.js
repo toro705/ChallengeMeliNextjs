@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import BoxContainer from '../../components/boxContainer';
 import BreadCrumb from '../../components/breadcrumb';
 import ProductList from '../../components/prductList';
+import { convertItemList } from '../../utils/functions';
 
 /* import { listQuery } from '../../utils/mocks'; */
 
@@ -46,23 +47,10 @@ export async function getServerSideProps( context ) {
     const fetch =  await axios.get(`https://api.mercadolibre.com/sites/MLA/search?q=${search}&limit=4`);
     let newItemsArray = [];
     const { results } = fetch.data;
-    console.log('[getServerSideProps] ', results)
     results.map((o, i) => {
         console.log('inside map');
-        let newItem = {
-            id: o.id,
-            title: o.title,
-            price: {
-                currency: o.currency_id,
-                amount: o.price,
-                decimals: null,
-            },
-            picture: o.thumbnail,
-            condition: o.condition,
-            city: o.address.state_name,
-            free_shipping: o.shipping.free_shipping,
-        };
-        /* console.log('[NewItem]', newItem); */
+        let newItem = convertItemList(o);
+        console.log('[new item]', newItem)
         newItemsArray.push(newItem);
     });
     return { props: { items: newItemsArray } }
