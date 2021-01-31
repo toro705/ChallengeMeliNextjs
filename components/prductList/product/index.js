@@ -18,7 +18,7 @@ const Product = ({ picture, id, title, price, free_shipping, city }) => {
     picture = picture.replace('-I.jpg', '-V.jpg');
     return (
       <div className="product d-flex">
-        <a href={`/items/${id}`}>
+        <a href={`/item/${id}`}>
           <div className="image" title={title}>
             <img className="rounded img-fluid" alt={title} src={picture} />
           </div>
@@ -34,7 +34,7 @@ const Product = ({ picture, id, title, price, free_shipping, city }) => {
             {freeShipping(free_shipping)}
             <div className="city col"><p className="p1">{city}</p></div>
           </div>
-          <a href={`/items/${id}`}>
+          <a href={`/item/${id}`}>
             <div className="descrip__bottom" title={title}>
               <p className="p4">{title}</p>
             </div>
@@ -77,7 +77,7 @@ Product.propTypes = {
     picture: PropTypes.string,
     id: PropTypes.string,
     title: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     free_shipping: PropTypes.bool,
     city: PropTypes.string,
 };
